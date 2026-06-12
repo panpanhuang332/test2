@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>實用英文互動教室|Lesson 4 接待外賓 & Lesson 5 與客戶會面</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@500;600;700&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F7F9FC;
+  --ink:#16243D;
+  --book-blue:#4A90C4;
+  --book-blue-deep:#2E6B9E;
+  --stamp:#C8503C;
+  --hl-yellow:#FFF3B8;
+  --hl-yellow-deep:#F5D769;
+  --ok-green:#3F8D5C;
+  --card-w:300px;
+  font-size:16px;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:"Noto Sans TC",sans-serif;
+  line-height:1.65;
+}
+.en{font-family:"Zilla Slab","Noto Sans TC",serif}
+
+/* ===== Header ===== */
+header{
+  background:var(--ink);
+  color:#fff;
+  padding:26px 18px 0;
+  position:relative;
+  overflow:hidden;
+}
+header::after{
+  content:"";
+  display:block;
+  height:8px;
+  margin-top:22px;
+  background:repeating-linear-gradient(90deg,var(--book-blue) 0 40px,var(--hl-yellow-deep) 40px 80px,var(--stamp) 80px 120px);
+}
+.head-inner{max-width:900px;margin:0 auto}
+.kicker{
+  display:inline-block;
+  font-size:.78rem;
+  letter-spacing:.18em;
+  background:var(--book-blue);
+  padding:3px 12px;
+  border-radius:3px;
+  margin-bottom:10px;
+}
+h1{font-size:clamp(1.5rem,4.5vw,2.2rem);font-weight:900;line-height:1.3}
+h1 .en{color:var(--hl-yellow-deep);font-weight:700}
+.head-sub{margin:8px 0 0;font-size:.9rem;color:#B9C6DB}
+
+/* ===== Lesson tabs ===== */
+.tabs{
+  max-width:900px;
+  margin:-1px auto 0;
+  display:flex;
+  gap:8px;
+  padding:14px 18px 0;
+  position:sticky;
+  top:0;
+  background:var(--paper);
+  z-index:50;
+  border-bottom:2px solid var(--ink);
+}
+.tab{
+  flex:1;
+  border:2px solid var(--ink);
+  border-bottom:none;
+  border-radius:10px 10px 0 0;
+  background:#fff;
+  padding:10px 6px;
+  font:inherit;
+  font-weight:700;
+  font-size:.95rem;
+  cursor:pointer;
+  color:var(--ink);
+  transition:.15s;
+}
+.tab small{display:block;font-weight:500;font-size:.72rem;color:#6b7892}
+.tab.active{background:var(--ink);color:#fff}
+.tab.active small{color:var(--hl-yellow-deep)}
+
+main{max-width:900px;margin:0 auto;padding:22px 18px 80px}
+.lesson{display:none}
+.lesson.active{display:block;animation:fadeUp .35s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+/* ===== Section title ===== */
+.sec{margin:34px 0 16px;display:flex;align-items:center;gap:10px}
+.sec:first-child{margin-top:10px}
+.sec .arrow{
+  width:0;height:0;
+  border-top:11px solid transparent;
+  border-bottom:11px solid transparent;
+  border-left:16px solid var(--book-blue);
+}
+.sec h2{font-size:1.25rem;font-weight:900}
+.sec .en-sub{font-size:.82rem;color:var(--book-blue-deep);font-weight:600;margin-left:4px}
+.tip{
+  background:#fff;
+  border-left:5px solid var(--book-blue);
+  padding:10px 14px;
+  border-radius:0 8px 8px 0;
+  font-size:.88rem;
+  color:#42506b;
+  margin-bottom:14px;
+  box-shadow:0 1px 3px rgba(22,36,61,.08);
+}
+
+/* ===== Word cards ===== */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
+.card{perspective:1200px;height:230px;cursor:pointer}
+.card-inner{
+  position:relative;width:100%;height:100%;
+  transition:transform .5s;
+  transform-style:preserve-3d;
+}
+.card.flipped .card-inner{transform:rotateY(180deg)}
+.face{
+  position:absolute;inset:0;
+  backface-visibility:hidden;
+  border-radius:12px;
+  padding:16px 18px;
+  display:flex;flex-direction:column;
+  border:2px solid var(--ink);
+}
+.face.front{
+  background:linear-gradient(180deg,var(--hl-yellow) 0%,#FBE99B 100%);
+  box-shadow:3px 3px 0 var(--ink);
+}
+.face.back{
+  background:#fff;
+  transform:rotateY(180deg);
+  box-shadow:3px 3px 0 var(--book-blue);
+  border-color:var(--book-blue-deep);
+  overflow:auto;
+}
+.w-num{
+  font-size:.72rem;font-weight:700;color:var(--stamp);
+  letter-spacing:.12em;margin-bottom:4px;
+}
+.w-word{font-size:1.45rem;font-weight:700}
+.w-ipa{font-size:1rem;color:#5a4a12;margin-top:2px}
+.w-pos{
+  display:inline-block;margin-top:8px;align-self:flex-start;
+  background:var(--ink);color:#fff;
+  font-size:.72rem;padding:2px 10px;border-radius:99px;
+}
+.flip-hint{margin-top:auto;font-size:.74rem;color:#8a7a35;text-align:right}
+.w-zh{font-size:1.1rem;font-weight:900;color:var(--book-blue-deep)}
+.w-ex{font-size:.86rem;margin-top:8px}
+.w-ex b{background:var(--hl-yellow);padding:0 3px;border-radius:3px}
+.w-ex-zh{font-size:.8rem;color:#6b7892;margin-top:4px}
+
+/* ===== Phrase list ===== */
+.phrases{display:grid;gap:10px}
+.phrase{
+  background:#fff;border:2px solid var(--ink);border-radius:10px;
+  padding:13px 16px;box-shadow:2px 2px 0 var(--hl-yellow-deep);
+}
+.phrase .p-head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.phrase .p-en{font-weight:700;font-size:1.05rem}
+.phrase .p-en::before{content:"◆";color:var(--book-blue);margin-right:6px;font-size:.8em}
+.phrase .p-zh{color:var(--stamp);font-weight:700;font-size:.88rem}
+.phrase .p-ex{font-size:.85rem;margin-top:5px;color:#42506b}
+.phrase .p-ex .en{color:var(--ink)}
+
+/* ===== Grammar boxes ===== */
+.gram{
+  background:#fff;border:2px solid var(--book-blue-deep);border-radius:12px;
+  padding:16px 18px;margin-bottom:14px;
+}
+.gram h3{
+  display:inline-block;background:var(--book-blue);color:#fff;
+  font-size:.95rem;padding:3px 14px;border-radius:6px;margin-bottom:10px;
+}
+.gram ul{padding-left:20px;font-size:.9rem}
+.gram li{margin-bottom:7px}
+.gram .ex{color:#42506b}
+.gram table{width:100%;border-collapse:collapse;font-size:.85rem;margin-top:8px}
+.gram th{background:var(--ink);color:#fff;padding:7px;font-weight:700}
+.gram td{border:1px solid #cdd7e6;padding:7px;vertical-align:top}
+.gram td:first-child{font-weight:700;color:var(--book-blue-deep);white-space:nowrap}
+
+/* ===== Quiz (cloze + dialogue) ===== */
+.quiz{
+  background:#fff;border:2px solid var(--ink);border-radius:12px;
+  padding:18px;margin-bottom:18px;position:relative;
+}
+.bank{
+  display:flex;flex-wrap:wrap;gap:8px;
+  background:var(--paper);border:2px dashed var(--book-blue);
+  border-radius:10px;padding:12px;margin-bottom:16px;
+}
+.chip{
+  border:2px solid var(--ink);background:var(--hl-yellow);
+  border-radius:99px;padding:5px 16px;
+  font:inherit;font-weight:700;font-size:.92rem;cursor:pointer;
+  transition:.12s;color:var(--ink);
+}
+.chip:active{transform:scale(.95)}
+.chip.used{opacity:.25;pointer-events:none}
+.q-item{margin-bottom:14px;font-size:.95rem}
+.q-item .qn{font-weight:900;color:var(--book-blue-deep);margin-right:4px}
+.blank{
+  display:inline-block;min-width:110px;text-align:center;
+  border:none;border-bottom:2.5px solid var(--ink);
+  background:transparent;font:inherit;font-weight:700;
+  color:var(--stamp);cursor:pointer;padding:0 6px;vertical-align:bottom;
+}
+.blank.selected{background:var(--hl-yellow);border-radius:6px 6px 0 0}
+.blank.right{color:var(--ok-green);border-color:var(--ok-green)}
+.blank.wrong{color:var(--stamp);border-color:var(--stamp);text-decoration:line-through}
+.q-zh{display:block;font-size:.78rem;color:#8a93a8;margin-top:2px}
+.q-actions{display:flex;gap:10px;align-items:center;margin-top:8px;flex-wrap:wrap}
+.btn{
+  font:inherit;font-weight:900;font-size:.95rem;cursor:pointer;
+  border:2px solid var(--ink);border-radius:10px;padding:9px 22px;
+  background:var(--ink);color:#fff;box-shadow:3px 3px 0 var(--book-blue);
+  transition:.12s;
+}
+.btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--book-blue)}
+.btn.ghost{background:#fff;color:var(--ink);box-shadow:3px 3px 0 var(--hl-yellow-deep)}
+.score{font-weight:900;font-size:1rem}
+.score.good{color:var(--ok-green)}
+.stamp{
+  position:absolute;top:10px;right:14px;
+  border:3px solid var(--stamp);color:var(--stamp);
+  border-radius:10px;padding:4px 14px;
+  font-weight:900;font-size:1rem;
+  transform:rotate(-10deg) scale(0);
+  opacity:.9;letter-spacing:.1em;
+  transition:transform .35s cubic-bezier(.2,2,.4,1);
+  pointer-events:none;background:rgba(255,255,255,.85);
+}
+.stamp.show{transform:rotate(-10deg) scale(1)}
+
+/* Dialogue */
+.dlg-line{margin-bottom:12px;font-size:.94rem;display:flex;gap:10px}
+.dlg-who{
+  flex:0 0 30px;height:30px;border-radius:50%;
+  background:var(--book-blue);color:#fff;font-weight:900;
+  display:flex;align-items:center;justify-content:center;font-size:.85rem;
+}
+.dlg-line.guest .dlg-who{background:var(--stamp)}
+.dlg-text{flex:1;background:#fff}
+.opt-row{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 16px}
+.note{font-size:.8rem;color:#8a93a8;margin-top:6px}
+
+footer{
+  text-align:center;font-size:.78rem;color:#8a93a8;
+  padding:24px 16px 40px;
+}
+@media (max-width:560px){
+  .cards{grid-template-columns:1fr 1fr}
+  .card{height:250px}
+  .w-word{font-size:1.2rem}
+  .face{padding:12px 12px}
+}
+@media (max-width:400px){
+  .cards{grid-template-columns:1fr}
+  .card{height:220px}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="head-inner">
+    <span class="kicker en">PRACTICAL ENGLISH · 互動教室</span>
+    <h1>實用英文 <span class="en">Lesson 4 &amp; 5</span><br>接待外賓 · 與客戶會面</h1>
+    <p class="head-sub">點單字卡可以翻面|克漏字用點選的就能作答|附 KK 音標與課本例句</p>
+  </div>
+</header>
+
+<div class="tabs">
+  <button class="tab active" data-lesson="l4">Lesson 4<small>Receiving Foreign Guests 接待外賓</small></button>
+  <button class="tab" data-lesson="l5">Lesson 5<small>Meeting with Clients 與客戶會面</small></button>
+</div>
+
+<main>
+
+<!-- ================= LESSON 4 ================= -->
+<section class="lesson active" id="l4">
+
+  <div class="sec"><span class="arrow"></span><h2>單字卡 Word Bank</h2><span class="en-sub">7 words</span></div>
+  <div class="tip">💡 正面是英文+KK音標,<b>點一下卡片</b>翻到背面,就能看到中文意思和課本例句。</div>
+  <div class="cards" id="cards-l4"></div>
+
+  <div class="sec"><span class="arrow"></span><h2>常用片語 Phrases</h2></div>
+  <div class="phrases" id="phrases-l4"></div>
+
+  <div class="sec"><span class="arrow"></span><h2>句型 &amp; 用法 Usage</h2></div>
+  <div class="gram">
+    <h3 class="en">prefer A or B 「比較喜歡 A 還是 B?」</h3>
+    <ul>
+      <li><span class="en">Would you <b>prefer</b> to talk to that customer <b>or</b> take this document to our boss?</span><br><span class="ex">你比較想去跟那位客戶談,還是把這份文件拿給老闆?</span></li>
+      <li><span class="en">I don't do much cooking; I <b>prefer</b> to eat out.</span><br><span class="ex">我不太煮飯,我比較喜歡外食。</span></li>
+      <li><span class="en">Darren <b>prefers</b> French food <b>to</b> Chinese food.</span><br><span class="ex">Darren 喜歡法國菜勝過中國菜。(prefer A to B)</span></li>
+    </ul>
+  </div>
+  <div class="gram">
+    <h3 class="en">either 的三種用法</h3>
+    <table>
+      <tr><th>用法</th><th>意思</th><th>課本例句</th></tr>
+      <tr><td>代名詞</td><td>兩個之中的任一個</td><td class="en">Either is fine with me.<br><span class="ex">(雞肉或牛肉)哪一個我都可以。</span></td></tr>
+      <tr><td>連接詞<br>(either...or)</td><td>不是…就是…</td><td class="en">We have to choose either this one or that one.<br><span class="ex">我們必須選這個或那個。</span></td></tr>
+      <tr><td>副詞<br>(用在否定句)</td><td>也(不)</td><td class="en">I don't know where Grace is, either.<br><span class="ex">我也不知道 Grace 在哪裡。</span></td></tr>
+    </table>
+  </div>
+
+  <div class="sec"><span class="arrow"></span><h2>對話填空 Part D: Showing Hospitality</h2></div>
+  <div class="quiz" id="dlg-l4">
+    <div class="stamp en">PASSED ✓</div>
+    <div class="tip" style="margin-bottom:12px">Sam 帶 Tonya 去餐廳,Joseph 再帶她去買紀念品。<b>先點空格,再點下面的 A~D 選項</b>填進去。</div>
+    <div class="opt-row">
+      <button class="chip" data-bank="dlg4" data-val="A">A. Don't worry.</button>
+      <button class="chip" data-bank="dlg4" data-val="B">B. No, I haven't.</button>
+      <button class="chip" data-bank="dlg4" data-val="C">C. Thanks for telling me.</button>
+      <button class="chip" data-bank="dlg4" data-val="D">D. That would be great.</button>
+    </div>
+    <div class="dlg-line"><div class="dlg-who">S</div><div class="dlg-text en">Have you ever had this kind of food before?</div></div>
+    <div class="dlg-line guest"><div class="dlg-who">T</div><div class="dlg-text en">❶ <button class="blank" data-bank="dlg4" data-ans="B"></button> But I'm really looking forward to it.</div></div>
+    <div class="dlg-line"><div class="dlg-who">S</div><div class="dlg-text en">I want to make this lunch <b>worth your while</b>, so I'll make sure to get you something <b>delicious</b>. Is there anything you don't like to eat?</div></div>
+    <div class="dlg-line guest"><div class="dlg-who">T</div><div class="dlg-text en">I don't like very <b>spicy</b> food.</div></div>
+    <div class="dlg-line"><div class="dlg-who">S</div><div class="dlg-text en">OK. And do you <b>prefer</b> chicken <b>or</b> beef?</div></div>
+    <div class="dlg-line guest"><div class="dlg-who">T</div><div class="dlg-text en"><b>Either</b> is fine with me.</div></div>
+    <div class="dlg-line"><div class="dlg-who">J</div><div class="dlg-text en">Is there anything <b>in particular</b> you wanted to see or do today?</div></div>
+    <div class="dlg-line guest"><div class="dlg-who">T</div><div class="dlg-text en">I do need to pick up some souvenirs for my family and friends.</div></div>
+    <div class="dlg-line"><div class="dlg-who">J</div><div class="dlg-text en">If you're <b>up for</b> it, I could take you to an <b>outdoor</b> market.</div></div>
+    <div class="dlg-line guest"><div class="dlg-who">T</div><div class="dlg-text en">❷ <button class="blank" data-bank="dlg4" data-ans="D"></button></div></div>
+    <div class="dlg-line"><div class="dlg-who">J</div><div class="dlg-text en">All right. Let's go to the market. <b>By the way</b>, you are allowed to <b>bargain</b> for the items there. No one ever pays the first amount the seller says.</div></div>
+    <div class="dlg-line guest"><div class="dlg-who">T</div><div class="dlg-text en">❸ <button class="blank" data-bank="dlg4" data-ans="C"></button> I'm not very good at bargaining <b>though</b>.</div></div>
+    <div class="dlg-line"><div class="dlg-who">J</div><div class="dlg-text en">❹ <button class="blank" data-bank="dlg4" data-ans="A"></button> I'll help you get the best <b>deal</b>.</div></div>
+    <div class="q-actions">
+      <button class="btn" data-check="dlg4">對答案</button>
+      <button class="btn ghost" data-reset="dlg4">重來</button>
+      <span class="score" data-score="dlg4"></span>
+    </div>
+  </div>
+
+  <div class="sec"><span class="arrow"></span><h2>克漏字測驗 Completing the Sentences</h2></div>
+  <div class="quiz" id="cloze-l4">
+    <div class="stamp en">PASSED ✓</div>
+    <div class="tip" style="margin-bottom:12px">課本 p.53 練習。<b>先點空格,再點黃色單字</b>填入。每個字只能用一次。</div>
+    <div class="bank">
+      <button class="chip" data-bank="c4" data-val="particular">particular</button>
+      <button class="chip" data-bank="c4" data-val="souvenirs">souvenirs</button>
+      <button class="chip" data-bank="c4" data-val="delicious">delicious</button>
+      <button class="chip" data-bank="c4" data-val="deal">deal</button>
+      <button class="chip" data-bank="c4" data-val="outdoor">outdoor</button>
+      <button class="chip" data-bank="c4" data-val="bargain">bargain</button>
+    </div>
+    <div class="q-item en"><span class="qn">1.</span>I tried to <button class="blank" data-bank="c4" data-ans="bargain"></button> with the seller, but he wouldn't lower the price.<span class="q-zh">我試著跟賣家殺價,但他不肯降價。</span></div>
+    <div class="q-item en"><span class="qn">2.</span>A used car may be a better <button class="blank" data-bank="c4" data-ans="deal"></button>, but I think getting a new car is a good idea.<span class="q-zh">買中古車也許比較划算,但我覺得買新車是個好主意。</span></div>
+    <div class="q-item en"><span class="qn">3.</span>I couldn't afford expensive <button class="blank" data-bank="c4" data-ans="souvenirs"></button>, so I got everyone postcards.<span class="q-zh">我買不起昂貴的紀念品,所以買了明信片送大家。</span></div>
+    <div class="q-item en"><span class="qn">4.</span>Who in <button class="blank" data-bank="c4" data-ans="particular"></button> do you think could do this job well?<span class="q-zh">你覺得「特別是」誰能把這份工作做好?(in particular)</span></div>
+    <div class="q-item en"><span class="qn">5.</span>I go to that restaurant every week because the food is so <button class="blank" data-bank="c4" data-ans="delicious"></button>.<span class="q-zh">我每週都去那間餐廳,因為食物太美味了。</span></div>
+    <div class="q-item en"><span class="qn">6.</span>Dogs can sit in the <button class="blank" data-bank="c4" data-ans="outdoor"></button> area, but they can't come inside the building.<span class="q-zh">狗可以待在戶外區,但不能進到建築物裡面。</span></div>
+    <div class="q-actions">
+      <button class="btn" data-check="c4">對答案</button>
+      <button class="btn ghost" data-reset="c4">重來</button>
+      <span class="score" data-score="c4"></span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= LESSON 5 ================= -->
+<section class="lesson" id="l5">
+
+  <div class="sec"><span class="arrow"></span><h2>單字卡 Word Bank</h2><span class="en-sub">8 words</span></div>
+  <div class="tip">💡 正面是英文+KK音標,<b>點一下卡片</b>翻到背面,就能看到中文意思和課本例句。</div>
+  <div class="cards" id="cards-l5"></div>
+
+  <div class="sec"><span class="arrow"></span><h2>常用片語 Phrases</h2></div>
+  <div class="phrases" id="phrases-l5"></div>
+
+  <div class="sec"><span class="arrow"></span><h2>文法小教室:三種名詞</h2></div>
+  <div class="gram">
+    <h3 class="en">可數 / 不可數 / 恆複數</h3>
+    <table>
+      <tr><th>種類</th><th>例字</th><th>動詞怎麼配</th></tr>
+      <tr><td>可數名詞<br><span class="en" style="font-weight:400">Countable</span></td><td class="en">location(s), manufacturer(s), office(s), employee(s)</td><td class="en">Our company <b>is</b> small. Those two companies <b>are</b> bigger than ours.</td></tr>
+      <tr><td>不可數名詞<br><span class="en" style="font-weight:400">Uncountable</span></td><td class="en">furniture, plastic, luggage, paper(紙這種材料)</td><td class="en">Plastic <b>is</b> easily recycled.<br><span class="ex">沒有複數形,動詞用單數!</span></td></tr>
+      <tr><td>恆複數名詞<br><span class="en" style="font-weight:400">Plural Only</span></td><td class="en">headquarters, clothes, goods, congratulations</td><td class="en">I hope that company's goods <b>are</b> not expensive.</td></tr>
+    </table>
+    <ul style="margin-top:12px">
+      <li>不可數名詞加上「量詞」就可以數了:<br>
+        <span class="en">Those <b>three pieces of</b> furniture <b>are</b> perfect for my bedroom.</span>(三件家具)<br>
+        <span class="en">Are there <b>a few sheets of</b> paper in the copier?</span>(幾張紙)<br>
+        <span class="en">Our <b>four sets of</b> luggage <b>are</b> too old to use.</span>(四組行李)</li>
+      <li class="ex">⚠️ 常見錯誤:<span class="en">a furniture ✘ → a piece of furniture ✔</span></li>
+    </ul>
+  </div>
+
+  <div class="sec"><span class="arrow"></span><h2>課文對話 Part A: Company Introductions</h2></div>
+  <div class="gram">
+    <h3 class="en">Rachel 向新客戶 Donald 介紹公司</h3>
+    <ul style="list-style:none;padding-left:0">
+      <li class="en" style="margin-bottom:8px"><b>R:</b> We were <b>founded</b> in 1954 by Paul and John Harvest. The company <b>started out as</b> a <b>manufacturer</b> of <b>plastic</b>, but now we <b>produce</b> <b>a wide range of</b> furniture.<br><span class="ex">我們公司由 Paul 和 John Harvest 在 1954 年創立,一開始是塑膠製造商,現在生產各式各樣的家具。</span></li>
+      <li class="en" style="margin-bottom:8px"><b>R:</b> Also, we have 60 stores <b>worldwide</b>, and our <b>headquarters</b> <b>are based in</b> California.<br><span class="ex">我們在全球有 60 間門市,總部設在加州。</span></li>
+      <li class="en"><b>D:</b> That's really <b>impressive</b>. I'm excited to learn more about this company.<br><span class="ex">真的很令人佩服!我很期待更了解這家公司。</span></li>
+    </ul>
+  </div>
+
+  <div class="sec"><span class="arrow"></span><h2>克漏字測驗 單字總複習</h2></div>
+  <div class="quiz" id="cloze-l5">
+    <div class="stamp en">PASSED ✓</div>
+    <div class="tip" style="margin-bottom:12px">用 Lesson 5 的單字片語完成句子(例句取自課本)。<b>先點空格,再點黃色單字</b>。</div>
+    <div class="bank">
+      <button class="chip" data-bank="c5" data-val="founded">founded</button>
+      <button class="chip" data-bank="c5" data-val="manufacturer">manufacturer</button>
+      <button class="chip" data-bank="c5" data-val="worldwide">worldwide</button>
+      <button class="chip" data-bank="c5" data-val="headquarters">headquarters</button>
+      <button class="chip" data-bank="c5" data-val="impressive">impressive</button>
+      <button class="chip" data-bank="c5" data-val="familiar">familiar</button>
+      <button class="chip" data-bank="c5" data-val="based">based</button>
+      <button class="chip" data-bank="c5" data-val="produce">produce</button>
+    </div>
+    <div class="q-item en"><span class="qn">1.</span>The company I work for was <button class="blank" data-bank="c5" data-ans="founded"></button> by my aunt.<span class="q-zh">我工作的公司是我阿姨創立的。</span></div>
+    <div class="q-item en"><span class="qn">2.</span>This company is the world's largest <button class="blank" data-bank="c5" data-ans="manufacturer"></button> of cell phones.<span class="q-zh">這家公司是全世界最大的手機製造商。</span></div>
+    <div class="q-item en"><span class="qn">3.</span>We ship our items <button class="blank" data-bank="c5" data-ans="worldwide"></button>.<span class="q-zh">我們的商品運送到全世界。</span></div>
+    <div class="q-item en"><span class="qn">4.</span>The business moved its <button class="blank" data-bank="c5" data-ans="headquarters"></button> to Mexico.<span class="q-zh">這家企業把總部搬到墨西哥。</span></div>
+    <div class="q-item en"><span class="qn">5.</span>Jessica had such an <button class="blank" data-bank="c5" data-ans="impressive"></button> résumé that she got hired right away.<span class="q-zh">Jessica 的履歷令人印象深刻,馬上就被錄取了。</span></div>
+    <div class="q-item en"><span class="qn">6.</span>I wasn't <button class="blank" data-bank="c5" data-ans="familiar"></button> with the area before I traveled there.<span class="q-zh">去那裡旅行之前,我對那個地區並不熟悉。</span></div>
+    <div class="q-item en"><span class="qn">7.</span>I think that company is <button class="blank" data-bank="c5" data-ans="based"></button> in Tokyo.<span class="q-zh">我想那家公司的據點設在東京。</span></div>
+    <div class="q-item en"><span class="qn">8.</span>We're looking for a new company to help <button class="blank" data-bank="c5" data-ans="produce"></button> this product.<span class="q-zh">我們正在找一家新公司協助生產這項產品。</span></div>
+    <div class="q-actions">
+      <button class="btn" data-check="c5">對答案</button>
+      <button class="btn ghost" data-reset="c5">重來</button>
+      <span class="score" data-score="c5"></span>
+    </div>
+  </div>
+
+  <div class="sec"><span class="arrow"></span><h2>聽力理解 Listening Comprehension</h2></div>
+  <div class="gram">
+    <h3>是非題 T / F(課本 p.58)</h3>
+    <ul>
+      <li class="en">1. Harvest Furniture Corporation currently also makes plastic. → <b style="color:var(--stamp)">F</b><span class="ex">(以前是塑膠製造商,「現在」生產家具)</span></li>
+      <li class="en">2. The company was started by two people. → <b style="color:var(--ok-green)">T</b><span class="ex">(Paul 和 John Harvest 兩人創立)</span></li>
+      <li class="en">3. There are 2,000 employees working at the location in California. → <b style="color:var(--stamp)">F</b><span class="ex">(加州這個據點只有 150 多人;2,000 多人是「全公司」)</span></li>
+    </ul>
+  </div>
+</section>
+
+</main>
+
+<footer>實用英文 Lesson 4–5 互動教室|單字、例句取自課本 p.51–60|為 國貿/經管 課程複習製作</footer>
+
+<script>
+/* ===== Data ===== */
+const L4_WORDS=[
+ {w:"souvenir",ipa:"[ˋsuvəˏnɪr]",pos:"n. 名詞",zh:"紀念品",ex:"T-shirts are common <b>souvenirs</b> to buy while on vacation.",zhEx:"T恤是度假時常買的紀念品。"},
+ {w:"delicious",ipa:"[dɪˋlɪʃəs]",pos:"adj. 形容詞",zh:"美味的",ex:"The food that was served at the company party was <b>delicious</b>!",zhEx:"公司派對上供應的食物很美味!"},
+ {w:"spicy",ipa:"[ˋspaɪsɪ]",pos:"adj. 形容詞",zh:"辣的",ex:"Mexican food is really <b>spicy</b>.",zhEx:"墨西哥菜真的很辣。"},
+ {w:"outdoor",ipa:"[ˋaʊtˏdor]",pos:"adj. 形容詞",zh:"戶外的",ex:"I'm not very good at <b>outdoor</b> activities, like sports.",zhEx:"我不太擅長戶外活動,像是運動。"},
+ {w:"bargain",ipa:"[ˋbɑrgɪn]",pos:"v. 動詞",zh:"討價還價;殺價",ex:"We have to <b>bargain</b> with that company if we want their products at a good price.",zhEx:"想用好價錢買到他們的產品,我們就得跟那家公司談價。"},
+ {w:"though",ipa:"[ðo]",pos:"adv. 副詞",zh:"不過;然而(放句尾)",ex:"Quentin has made three big mistakes this month. He hasn't been fired <b>though</b>.",zhEx:"Quentin 這個月犯了三個大錯,不過他還沒被開除。"},
+ {w:"deal",ipa:"[dil]",pos:"n. 名詞",zh:"交易;划算的買賣",ex:"We didn't think the price was a good <b>deal</b>, so we didn't buy the item.",zhEx:"我們覺得這價格不划算,所以沒買。"}
+];
+const L4_PHRASES=[
+ {p:"worth one's while",zh:"值得(某人)花時間",ex:"I think going to graduate school would be worth your while.",zhEx:"我覺得念研究所對你來說是值得的。"},
+ {p:"in particular",zh:"特別;尤其",ex:"I'm hungry, but there's nothing in particular that I feel like eating.",zhEx:"我餓了,但沒有特別想吃什麼。"},
+ {p:"be up for sth",zh:"有意願做某事",ex:"Are you up for planning the meeting with me?",zhEx:"你願意跟我一起規劃這場會議嗎?"},
+ {p:"by the way",zh:"順帶一提",ex:"I won't be in the office next week, by the way.",zhEx:"順帶一提,我下週不在辦公室。"}
+];
+const L5_WORDS=[
+ {w:"furniture",ipa:"[ˋfɝnɪtʃɚ]",pos:"n. 名詞(不可數)",zh:"家具",ex:"The <b>furniture</b> in our office is old and not very comfortable.",zhEx:"我們辦公室的家具又舊又不太舒適。(一件家具 = a piece of furniture)"},
+ {w:"found",ipa:"[faʊnd]",pos:"v. 動詞",zh:"創立(= establish)",ex:"The company I work for was <b>founded</b> by my aunt.",zhEx:"我工作的公司是我阿姨創立的。"},
+ {w:"manufacturer",ipa:"[ˏmænjəˋfæktʃərɚ]",pos:"n. 名詞",zh:"製造商",ex:"This company is the world's largest <b>manufacturer</b> of cell phones.",zhEx:"這家公司是全世界最大的手機製造商。"},
+ {w:"plastic",ipa:"[ˋplæstɪk]",pos:"n. 名詞(不可數)",zh:"塑膠",ex:"Most items that are made out of <b>plastic</b> can be recycled.",zhEx:"大部分塑膠製品都可以回收再生。"},
+ {w:"produce",ipa:"[prəˋdjus]",pos:"v. 動詞",zh:"生產;製造",ex:"We're looking for a new company to help <b>produce</b> this product.",zhEx:"我們正在找一家新公司協助生產這項產品。(重音在前 [ˋprɑdjus] 是名詞「農產品」)"},
+ {w:"worldwide",ipa:"[ˋwɝldˋwaɪd]",pos:"adv. 副詞",zh:"在全世界",ex:"We ship our items <b>worldwide</b>.",zhEx:"我們的商品運送到全世界。"},
+ {w:"headquarters",ipa:"[ˋhɛdˏkwɔrtɚz]",pos:"n. 名詞(恆複數)",zh:"總部",ex:"The business moved its <b>headquarters</b> to Mexico.",zhEx:"這家企業把總部搬到墨西哥。(字尾永遠有 s!)"},
+ {w:"impressive",ipa:"[ɪmˋprɛsɪv]",pos:"adj. 形容詞",zh:"令人印象深刻的",ex:"Jessica had such an <b>impressive</b> résumé that she got hired right away.",zhEx:"Jessica 的履歷令人印象深刻,馬上就被錄取了。"}
+];
+const L5_PHRASES=[
+ {p:"be familiar with",zh:"對…熟悉",ex:"I wasn't familiar with the area before I traveled there.",zhEx:"去那裡旅行之前,我對那個地區並不熟悉。"},
+ {p:"start out as",zh:"一開始是…起家",ex:"Katie started out as the receptionist, and now she's the CEO!",zhEx:"Katie 從接待員做起,現在已經是執行長了!"},
+ {p:"a wide range of",zh:"各式各樣的;範圍廣的",ex:"Most hotels offer a wide range of services for their guests.",zhEx:"大部分飯店為客人提供各式各樣的服務。"},
+ {p:"be based in",zh:"(公司)據點設於…",ex:"I think that company is based in Tokyo.",zhEx:"我想那家公司的據點設在東京。"}
+];
+
+/* ===== Render cards & phrases ===== */
+function renderCards(list,el){
+  el.innerHTML=list.map((d,i)=>`
+  <div class="card" role="button" tabindex="0" aria-label="${d.w} 單字卡,點擊翻面">
+    <div class="card-inner">
+      <div class="face front">
+        <div class="w-num en">WORD ${String(i+1).padStart(2,"0")}</div>
+        <div class="w-word en">${d.w}</div>
+        <div class="w-ipa en">${d.ipa}</div>
+        <span class="w-pos">${d.pos}</span>
+        <div class="flip-hint">點我看中文 ↻</div>
+      </div>
+      <div class="face back">
+        <div class="w-zh">${d.zh}</div>
+        <div class="w-ex en">${d.ex}</div>
+        <div class="w-ex-zh">${d.zhEx}</div>
+      </div>
+    </div>
+  </div>`).join("");
+  el.querySelectorAll(".card").forEach(c=>{
+    const flip=()=>c.classList.toggle("flipped");
+    c.addEventListener("click",flip);
+    c.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();flip();}});
+  });
+}
+function renderPhrases(list,el){
+  el.innerHTML=list.map(d=>`
+  <div class="phrase">
+    <div class="p-head"><span class="p-en en">${d.p}</span><span class="p-zh">${d.zh}</span></div>
+    <div class="p-ex"><span class="en">${d.ex}</span><br>${d.zhEx}</div>
+  </div>`).join("");
+}
+renderCards(L4_WORDS,document.getElementById("cards-l4"));
+renderCards(L5_WORDS,document.getElementById("cards-l5"));
+renderPhrases(L4_PHRASES,document.getElementById("phrases-l4"));
+renderPhrases(L5_PHRASES,document.getElementById("phrases-l5"));
+
+/* ===== Tabs ===== */
+document.querySelectorAll(".tab").forEach(t=>{
+  t.addEventListener("click",()=>{
+    document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));
+    document.querySelectorAll(".lesson").forEach(x=>x.classList.remove("active"));
+    t.classList.add("active");
+    document.getElementById(t.dataset.lesson).classList.add("active");
+    window.scrollTo({top:0,behavior:"smooth"});
+  });
+});
+
+/* ===== Cloze engine (tap blank → tap chip) ===== */
+const selected={};
+document.querySelectorAll(".blank").forEach(b=>{
+  b.addEventListener("click",()=>{
+    const bank=b.dataset.bank;
+    // if blank already filled, return its chip
+    if(b.textContent){
+      const chip=[...document.querySelectorAll(`.chip[data-bank="${bank}"]`)].find(c=>c.dataset.val===b.dataset.cur&&c.classList.contains("used"));
+      if(chip)chip.classList.remove("used");
+      b.textContent="";b.dataset.cur="";
+      b.classList.remove("right","wrong");
+    }
+    document.querySelectorAll(`.blank[data-bank="${bank}"]`).forEach(x=>x.classList.remove("selected"));
+    b.classList.add("selected");
+    selected[bank]=b;
+  });
+});
+document.querySelectorAll(".chip").forEach(c=>{
+  c.addEventListener("click",()=>{
+    const bank=c.dataset.bank;
+    let b=selected[bank];
+    if(!b||b.textContent){ // auto-pick first empty blank
+      b=[...document.querySelectorAll(`.blank[data-bank="${bank}"]`)].find(x=>!x.textContent);
+      if(!b)return;
+    }
+    b.textContent=c.dataset.val==="A"||c.dataset.val==="B"||c.dataset.val==="C"||c.dataset.val==="D"?c.textContent.replace(/^[ABCD]\.\s*/,""):c.dataset.val;
+    b.dataset.cur=c.dataset.val;
+    b.classList.remove("selected","right","wrong");
+    c.classList.add("used");
+    selected[bank]=null;
+  });
+});
+document.querySelectorAll("[data-check]").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    const bank=btn.dataset.check;
+    const blanks=[...document.querySelectorAll(`.blank[data-bank="${bank}"]`)];
+    let ok=0;
+    blanks.forEach(b=>{
+      if(!b.dataset.cur){b.classList.add("wrong");return;}
+      if(b.dataset.cur===b.dataset.ans){b.classList.add("right");b.classList.remove("wrong");ok++;}
+      else{b.classList.add("wrong");b.classList.remove("right");}
+    });
+    const scoreEl=document.querySelector(`[data-score="${bank}"]`);
+    scoreEl.textContent=`得分:${ok} / ${blanks.length}`;
+    scoreEl.classList.toggle("good",ok===blanks.length);
+    const stamp=btn.closest(".quiz").querySelector(".stamp");
+    if(stamp)stamp.classList.toggle("show",ok===blanks.length);
+  });
+});
+document.querySelectorAll("[data-reset]").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    const bank=btn.dataset.reset;
+    document.querySelectorAll(`.blank[data-bank="${bank}"]`).forEach(b=>{
+      b.textContent="";b.dataset.cur="";
+      b.classList.remove("right","wrong","selected");
+    });
+    document.querySelectorAll(`.chip[data-bank="${bank}"]`).forEach(c=>c.classList.remove("used"));
+    const scoreEl=document.querySelector(`[data-score="${bank}"]`);
+    scoreEl.textContent="";scoreEl.classList.remove("good");
+    const stamp=btn.closest(".quiz").querySelector(".stamp");
+    if(stamp)stamp.classList.remove("show");
+    selected[bank]=null;
+  });
+});
+</script>
+</body>
+</html>
